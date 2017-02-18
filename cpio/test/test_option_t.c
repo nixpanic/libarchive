@@ -64,12 +64,12 @@ DEFINE_TEST(test_option_t)
 	/* List reference archive verbosely, make sure the TOC is correct. */
 	r = systemf("%s -itv < test_option_t.cpio >tv.out 2>tv.err", testprog);
 	assertEqualInt(r, 0);
-	assertTextFileContents("1 block\n", "tv.err");
 	extract_reference_file("test_option_tv.stdout");
 
 	/* This doesn't work because the usernames on different systems
 	 * are different and cpio now looks up numeric UIDs on
-	 * the local system. */
+	 * the local system, warnings may be printed. */
+	/* assertTextFileContents("1 block\n", "tv.err"); */
 	/* assertEqualFile("tv.out", "test_option_tv.stdout"); */
 
 	/* List reference archive with numeric IDs, verify TOC is correct. */
